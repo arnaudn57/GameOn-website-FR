@@ -43,7 +43,7 @@ function validate(){
     console.log("verfication done");
     closeModal();
     confirmModal();
-    // return false;
+    return false;
   } else {
     // alert('Une erreur est survenue');
     return false;
