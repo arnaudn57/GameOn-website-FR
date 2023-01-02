@@ -14,8 +14,6 @@ const formData = document.querySelectorAll(".formData");
 const modalBtnClose = document.querySelector(".close");
 
 
-console.log(modalBtnClose);
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalBtnClose.addEventListener("click", closeModal);
@@ -30,22 +28,25 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
-// --------------FORM Validate--------------
+const confirm_modal = document.getElementById("confirm-modal");
+const confirm_modal_close = document.getElementById("confirm-modal-close");
+function closeModalConfirmation() {
+  confirm_modal.style.display = "none";
+}
 
-const birthdate = document.getElementById("birthdate");
-const newsletter = document.getElementById("checkbox2");
+// --------------FORM Validate--------------
 
 
 function validate(){
   if (validate_prenom_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
     //Affiche la modal de confirmation
-    console.log("verfication done")
+    console.log("verfication done");
+    closeModal();
     confirmModal();
-    alert("verfication done");
-    confirmModal();
-    return true;
+    // return false;
   } else {
     // alert('Une erreur est survenue');
+    return false;
   }
 }
 
@@ -53,29 +54,31 @@ function showErrors(raison, error_name){
   document.getElementById(`${error_name}`).innerHTML = `${raison}`;
 }
 
+function hideErrors(error_name){
+  document.getElementById(`${error_name}`).innerHTML = '';
+}
 
-const confirm_modal = document.getElementById("confirm-modal");
+
 function confirmModal() {
   confirm_modal.style.display = "block";
+  confirm_modal_close.addEventListener("click", (e)=>{
+    closeModalConfirmation();
+    location.reload();
+    return true;
+  });
 }
 
 
 const prenom = document.getElementById("first");
 const nom = document.getElementById("last");
 
-prenom.addEventListener("input", (e) => {
-  validate_prenom_nom();
-  console.log(prenom.value);
-});
-
 function validate_prenom_nom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if( prenom.value.length >= 2 && nom.value.length >= 2){
+    hideErrors('errors_name');
     return true;
   } else {
-    console.log("Caractère insuffisant")
-    showErrors("Caractère insuffisant", 'errors_name');
-    // alert("Veuillez renseigner un prénom et un nom valide");
+    showErrors("Veuillez entrer 2 caractères ou plus pour le champ du nom.", 'errors_name');
     return false;
   }
 }
@@ -85,6 +88,7 @@ const email = document.getElementById("email");
 function validate_email(){
   //Vérifie si l'email est valide et existante
   if (email.value.toLowerCase().match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)){
+    hideErrors('errors_email');
     return true;
   } else {
     showErrors("Veuillez renseigner un email valide", 'errors_email');
@@ -99,6 +103,7 @@ function validate_nombre_concours(){
   const verifye = parseInt(uo);
   // Vérifie si le nombre de concours est valide (int)
   if(Number.isInteger(verifye) && 0 < verifye && verifye < 1000){
+    hideErrors('errors_quantity');
     return true;
   } else {
     showErrors("Veuillez renseigner un nombre valide", 'errors_quantity');
@@ -124,10 +129,11 @@ function validate_localisation(){
     }
   });
   if(number_checked == 1){
+    hideErrors('errors_location');
     return true;
   } else {
-    // alert("Veuillez sélectionner une ville");
-    showErrors('Veuillez sélectionner une ville', 'errors_location');
+    //Affiche une erreur
+    showErrors('Vous devez choisir une ville', 'errors_location');
     return false;
   }
 }
@@ -137,10 +143,11 @@ const cgu = document.getElementById("checkbox1");
 function validate_cgu(){
   //Vérifie si les CGU sont cochées
   if(cgu.checked){
+    hideErrors('errors_cgu');
     return true;
   } else {
     // alert("Veuillez accepter les CGU");
-    showErrors('Veuillez accepter les CGU', 'errors_cgu');
+    showErrors('Vous devez vérifier que vous acceptez les termes et conditions.', 'errors_cgu');
     return false;
   }
 }

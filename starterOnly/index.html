@@ -57,12 +57,11 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+              id="form-reserve"
               name="reserve"
               action="index.html"
-              onsubmit="return false;"
+              onsubmit="return validate(); return false"
             >
-                          <!-- method="get"
-              onsubmit="return validate();" -->
               <div
                 class="formData">
                 <label>Prénom</label><br>
@@ -73,7 +72,7 @@
                   name="first"
                   minlength="2"
                 /><br>
-                <span id="errors_name"></span>
+                <span id="errors_name" class="error"></span>
               </div>
               <div
                 class="formData">
@@ -84,7 +83,7 @@
                   id="last"
                   name="last"
                 /><br>
-                <span id="errors_name"></span>
+                <span id="errors_name" class="error"></span>
               </div>
               <div
                 class="formData">
@@ -95,7 +94,7 @@
                   id="email"
                   name="email"
                 /><br>
-                <span id="errors_email"></span>
+                <span id="errors_email" class="error"></span>
               </div>
               <div
                 class="formData">
@@ -106,15 +105,15 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
-                <span id="errors_birthday_date"></span>
+                <span id="errors_birthday_date" class="error"></span>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span id="errors_quantity" class="error"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <span id="errors_quantity"></span>
               <div
                 class="formData">
                 <input
@@ -183,7 +182,8 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
-                <span id="errors_location"></span>
+                <br>
+                <span id="errors_location" class="error"></span>
               </div>
 
               <div
@@ -197,7 +197,8 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
-                <span id="errors_cgu"></span>
+                <br>
+                <span id="errors_cgu" class="error"></span>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
@@ -211,9 +212,7 @@
                 type="submit"
                 class="button"
                 value="C'est parti"
-                onclick="validate()"
               />
-              <span id="errors"></span>
             </form>
           </div>
         </div>
@@ -221,7 +220,7 @@
 
       <section id="confirm-modal" class="bground">
         <p>Merci pour votre inscription</p>
-        <button>Fermer</button>
+        <button id="confirm-modal-close" class="btn-submit">Fermer</button>
       </section>
     </main>
     <footer>
