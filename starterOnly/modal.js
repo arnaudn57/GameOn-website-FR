@@ -34,14 +34,14 @@ function closeModalConfirmation() {
   confirm_modal.style.display = "none";
 }
 
-// --------------FORM Validate--------------
-
+// --------------FORM Validation--------------
 
 function validate(){
   if (validate_prenom_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
-    //Affiche la modal de confirmation
     console.log("verfication done");
+    //Ferme la modal d'inscription
     closeModal();
+    //Affiche la modal de confirmation
     confirmModal();
     return false;
   } else {
@@ -50,17 +50,21 @@ function validate(){
   }
 }
 
+//function qui affiche les erreurs
 function showErrors(raison, error_name){
   document.getElementById(`${error_name}`).innerHTML = `${raison}`;
 }
 
+//function qui cache les erreurs
 function hideErrors(error_name){
   document.getElementById(`${error_name}`).innerHTML = '';
 }
 
-
+//Function qui affiche la modal de confirmation
 function confirmModal() {
   confirm_modal.style.display = "block";
+  confirm_modal.classList.add('display-confirm-modal');
+  confirm_modal.removeAttribute('id');
   confirm_modal_close.addEventListener("click", (e)=>{
     closeModalConfirmation();
     location.reload();
@@ -68,10 +72,10 @@ function confirmModal() {
   });
 }
 
-
+//DOM Elements Nom et Prénom
 const prenom = document.getElementById("first");
 const nom = document.getElementById("last");
-
+//Function qui vérifie le nom et le prénom
 function validate_prenom_nom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if( prenom.value.length >= 2 && nom.value.length >= 2){
@@ -83,8 +87,9 @@ function validate_prenom_nom(){
   }
 }
 
-
+//DOM Element Email
 const email = document.getElementById("email");
+//Function qui vérifie l'email
 function validate_email(){
   //Vérifie si l'email est valide et existante
   if (email.value.toLowerCase().match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)){
@@ -96,8 +101,9 @@ function validate_email(){
   }
 }
 
-
+//DOM Element Nombre de concours
 const quantity = document.getElementById("quantity");
+//Function qui vérifie le nombre de concours
 function validate_nombre_concours(){
   const uo = quantity.value;
   const verifye = parseInt(uo);
@@ -111,7 +117,7 @@ function validate_nombre_concours(){
   }
 }
 
-
+//DOM Elements Localisation
 const location_un = document.getElementById("location1");
 const location_deux = document.getElementById("location2");
 const location_trois = document.getElementById("location3");
@@ -119,6 +125,7 @@ const location_quatre = document.getElementById("location4");
 const location_cinq = document.getElementById("location5");
 const location_six = document.getElementById("location6");
 const array_loc = [location_un, location_deux, location_trois, location_quatre, location_cinq, location_six];
+//Function qui vérifie la localisation
 function validate_localisation(){
   //Vérifie si au moins une ville est sélectionnée
   let number_checked = 0;
@@ -138,8 +145,9 @@ function validate_localisation(){
   }
 }
 
-
+//DOM Element CGU
 const cgu = document.getElementById("checkbox1");
+//Function qui vérifie les CGU
 function validate_cgu(){
   //Vérifie si les CGU sont cochées
   if(cgu.checked){

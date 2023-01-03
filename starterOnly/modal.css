@@ -26,6 +26,20 @@ body {
   display: none;
 }
 
+.display-confirm-modal {
+  display: block;
+  position: fixed;
+  color: white;
+  z-index: 1;
+  background-color: #232323;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 25%;
+}
+
 .error {
   color: red;
   font-size: 12px;
