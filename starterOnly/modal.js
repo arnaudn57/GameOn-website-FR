@@ -37,18 +37,33 @@ function closeModalConfirmation() {
 // --------------FORM Validation--------------
 
 function validate(){
-  if (validate_prenom_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
-    console.log("verfication done");
+  if (validate_input() === true){
+    console.log("verification done");
     //Ferme la modal d'inscription
     closeModal();
     //Affiche la modal de confirmation
     confirmModal();
     return false;
   } else {
-    // alert('Une erreur est survenue');
     return false;
   }
 }
+
+function validate_input(){
+  validate_prenom();
+  validate_nom();
+  validate_email();
+  validate_nombre_concours();
+  validate_localisation();
+  validate_cgu();
+  if (validate_prenom() && validate_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
+    console.log("OOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKKO");
+    return true;
+  }
+
+  // validate_prenom() && validate_nom() &&
+}
+
 
 //function qui affiche les erreurs
 function showErrors(raison, error_name){
@@ -74,15 +89,26 @@ function confirmModal() {
 
 //DOM Elements Nom et Prénom
 const prenom = document.getElementById("first");
-const nom = document.getElementById("last");
 //Function qui vérifie le nom et le prénom
-function validate_prenom_nom(){
+function validate_prenom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
-  if( prenom.value.length >= 2 && nom.value.length >= 2){
+  if(prenom.value.match(/^[a-zA-Z ]+$/) && prenom.value.length >= 2){
     hideErrors('errors_name');
     return true;
   } else {
-    showErrors("Veuillez entrer 2 caractères ou plus pour le champ du nom.", 'errors_name');
+    showErrors("Veuillez renseigner un prénom valide", 'errors_first_name');
+    return false;
+  }
+}
+
+const nom = document.getElementById("last");
+function validate_nom(){
+  //Vérifie si nom et prénom ont plus de 2 caractères
+  if(nom.value.match(/^[a-zA-Z ]+$/) && nom.value.length >= 2){
+    hideErrors('errors_name');
+    return true;
+  } else {
+    showErrors("Veuillez renseigner un nom valide", 'errors_second_name');
     return false;
   }
 }
@@ -147,7 +173,10 @@ function validate_localisation(){
 
 //DOM Element CGU
 const cgu = document.getElementById("checkbox1");
-//Function qui vérifie les CGU
+
+// Vérifie si le champ "CGU" est coché
+// Si oui, continue le traitement
+// Si non, affiche un message d'erreur
 function validate_cgu(){
   //Vérifie si les CGU sont cochées
   if(cgu.checked){
