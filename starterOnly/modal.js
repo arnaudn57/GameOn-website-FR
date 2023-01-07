@@ -38,7 +38,6 @@ function closeModalConfirmation() {
 
 function validate(){
   if (validate_input() === true){
-    console.log("verification done");
     //Ferme la modal d'inscription
     closeModal();
     //Affiche la modal de confirmation
@@ -57,7 +56,6 @@ function validate_input(){
   validate_localisation();
   validate_cgu();
   if (validate_prenom() && validate_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
-    console.log("OOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKKO");
     return true;
   }
 
@@ -93,7 +91,7 @@ const prenom = document.getElementById("first");
 function validate_prenom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if(prenom.value.match(/^[a-zA-Z ]+$/) && prenom.value.length >= 2){
-    hideErrors('errors_name');
+    hideErrors('errors_first_name');
     return true;
   } else {
     showErrors("Veuillez renseigner un prénom valide", 'errors_first_name');
@@ -105,7 +103,7 @@ const nom = document.getElementById("last");
 function validate_nom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if(nom.value.match(/^[a-zA-Z ]+$/) && nom.value.length >= 2){
-    hideErrors('errors_name');
+    hideErrors('errors_second_name');
     return true;
   } else {
     showErrors("Veuillez renseigner un nom valide", 'errors_second_name');
