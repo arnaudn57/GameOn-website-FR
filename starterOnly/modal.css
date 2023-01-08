@@ -382,6 +382,7 @@ input[data-error]::after {
   border-radius: 5px 0 5px 0;
 }
 
+
 /* Point the arrow upwards when the select box is open (active): */
 .select-selected.select-arrow-active:after {
   transform: rotate(135deg);
