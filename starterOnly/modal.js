@@ -12,79 +12,45 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBtnClose = document.querySelector(".close");
+const modalBtnConfirmationClose = document.querySelector(".close-merci");
 
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-modalBtnClose.addEventListener("click", closeModal);
 
+// close modal event
+modalBtnClose.addEventListener("click", closeModal);
+modalBtnConfirmationClose.addEventListener("click", closeModalConfirmation);
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
+// close modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-const confirm_modal = document.getElementById("confirm-modal");
-const confirm_modal_close = document.getElementById("confirm-modal-close");
-function closeModalConfirmation() {
-  confirm_modal.style.display = "none";
-}
-
-// --------------FORM Validation--------------
-
-function validate(){
-  if (validate_input() === true){
-    //Ferme la modal d'inscription
-    closeModal();
-    //Affiche la modal de confirmation
-    confirmModal();
-    return false;
-  } else {
-    return false;
-  }
-}
-
-function validate_input(){
-  validate_prenom();
-  validate_nom();
-  validate_email();
-  validate_nombre_concours();
-  validate_localisation();
-  validate_cgu();
-  if (validate_prenom() && validate_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
-    return true;
-  }
-
-  // validate_prenom() && validate_nom() &&
-}
-
-
-//function qui affiche les erreurs
-function showErrors(raison, error_name){
-  document.getElementById(`${error_name}`).innerHTML = `${raison}`;
-}
-
-//function qui cache les erreurs
-function hideErrors(error_name){
-  document.getElementById(`${error_name}`).innerHTML = '';
-}
-
-//Function qui affiche la modal de confirmation
+//launch modal confirmation
 function confirmModal() {
   confirm_modal.style.display = "block";
   confirm_modal.classList.add('display-confirm-modal');
   confirm_modal.removeAttribute('id');
   confirm_modal_close.addEventListener("click", (e)=>{
     closeModalConfirmation();
-    location.reload();
-    return true;
   });
 }
 
+// close modal confirmation
+const confirm_modal = document.getElementById("confirm-modal");
+const confirm_modal_close = document.getElementById("confirm-modal-close");
+function closeModalConfirmation() {
+  confirm_modal.style.display = "none";
+}
+
+
+//----Champs validation-----------
 //DOM Elements Nom et Prénom
 const prenom = document.getElementById("first");
 //Function qui vérifie le nom et le prénom
@@ -185,4 +151,44 @@ function validate_cgu(){
     showErrors('Vous devez vérifier que vous acceptez les termes et conditions.', 'errors_cgu');
     return false;
   }
+}
+// --------------------------------------------
+
+// --------------FORM Validation--------------
+let formulaire = document.getElementById("formulaire");
+formulaire.addEventListener("submit", function(event){
+  event.preventDefault();
+  if (validate_input() === true){
+    //Ferme la modal d'inscription
+    closeModal();
+    //Affiche la modal de confirmation
+    confirmModal();
+    formulaire.reset();
+  } else {
+    return false;
+  }
+});
+
+
+function validate_input(){
+  if (validate_prenom() && validate_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
+    return true;
+  }
+  validate_prenom();
+  validate_nom();
+  validate_email();
+  validate_nombre_concours();
+  validate_localisation();
+  validate_cgu();
+}
+
+
+//function qui affiche les erreurs
+function showErrors(raison, error_name){
+  document.getElementById(`${error_name}`).innerHTML = `${raison}`;
+}
+
+//function qui cache les erreurs
+function hideErrors(error_name){
+  document.getElementById(`${error_name}`).innerHTML = '';
 }
