@@ -57,10 +57,10 @@ const prenom = document.getElementById("first");
 function validate_prenom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if(prenom.value.match(/^[a-zA-Z ]+$/) && prenom.value.length >= 2){
-    hideErrors('errors_first_name');
+    hideErrors('errors_first_name', "first");
     return true;
   } else {
-    showErrors("Veuillez renseigner un prénom valide", 'errors_first_name');
+    showErrors("Veuillez renseigner un prénom valide", 'errors_first_name', "first");
     return false;
   }
 }
@@ -69,10 +69,10 @@ const nom = document.getElementById("last");
 function validate_nom(){
   //Vérifie si nom et prénom ont plus de 2 caractères
   if(nom.value.match(/^[a-zA-Z ]+$/) && nom.value.length >= 2){
-    hideErrors('errors_second_name');
+    hideErrors('errors_second_name', "last");
     return true;
   } else {
-    showErrors("Veuillez renseigner un nom valide", 'errors_second_name');
+    showErrors("Veuillez renseigner un nom valide", 'errors_second_name', "last");
     return false;
   }
 }
@@ -83,10 +83,10 @@ const email = document.getElementById("email");
 function validate_email(){
   //Vérifie si l'email est valide et existante
   if (email.value.toLowerCase().match(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)){
-    hideErrors('errors_email');
+    hideErrors('errors_email', "email");
     return true;
   } else {
-    showErrors("Veuillez renseigner un email valide", 'errors_email');
+    showErrors("Veuillez renseigner un email valide", 'errors_email', "email");
     return false;
   }
 }
@@ -99,10 +99,10 @@ function validate_nombre_concours(){
   const verifye = parseInt(uo);
   // Vérifie si le nombre de concours est valide (int)
   if(Number.isInteger(verifye) && 0 < verifye && verifye < 1000){
-    hideErrors('errors_quantity');
+    hideErrors('errors_quantity', "quantity");
     return true;
   } else {
-    showErrors("Veuillez renseigner un nombre valide", 'errors_quantity');
+    showErrors("Veuillez renseigner un nombre valide", 'errors_quantity', "quantity");
     return false;
   }
 }
@@ -184,11 +184,17 @@ function validate_input(){
 
 
 //function qui affiche les erreurs
-function showErrors(raison, error_name){
+function showErrors(raison, error_name, input_id){
   document.getElementById(`${error_name}`).innerHTML = `${raison}`;
+  if (input_id != undefined) {
+    document.getElementById(`${input_id}`).classList.add('border-error');
+  }
 }
 
 //function qui cache les erreurs
-function hideErrors(error_name){
+function hideErrors(error_name, input_id){
   document.getElementById(`${error_name}`).innerHTML = '';
+  if (input_id != undefined) {
+    document.getElementById(`${input_id}`).classList.remove('border-error');
+  }
 }
