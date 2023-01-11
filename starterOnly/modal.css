@@ -26,6 +26,15 @@ body {
   display: none;
 }
 
+@media screen and (max-width: 768px){
+  .confirm-modal-text {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50%;
+  }
+}
+
+
 .display-confirm-modal {
   display: block;
   position: fixed;
@@ -97,6 +106,15 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .topnav {
+    position: fixed;
+    z-index: 2;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding-top: 17px;
+  }
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -142,8 +160,11 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
+}
+@media screen and (max-width: 768px) {
+  main {
+    padding-top: 3.8vw;
+  }
 }
 
 .modal-btn {
@@ -212,6 +233,11 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+}
+@media screen and (max-width: 768px) {
+  .content {
+    margin: 13% auto auto auto;
+  }
 }
 
 .modal-body {
@@ -482,6 +508,21 @@ input[data-error]::after {
   text-align: left;
   min-width: 424px;
 }
+@media screen and (max-width: 768px) {
+  .hero-content {
+    padding: 63px 0 0 0;
+    min-width: auto;
+  }
+
+  .hero-headline {
+    font-size: 40px;
+  }
+
+  .hero-text {
+    font-size: 13px;
+  }
+
+ }
 
 
 .hero-content::after {
