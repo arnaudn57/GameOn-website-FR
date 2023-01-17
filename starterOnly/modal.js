@@ -91,6 +91,20 @@ function validate_email(){
   }
 }
 
+//DOM Element Date de naissance
+// const date_naissance = document.getElementById("birthdate");
+// function validate_birthdate(){
+//   if (date_naissance.value.match(/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/)){
+//     hideErrors('errors_birthdate', "birthdate");
+//     console.log("OK");
+//     return true;
+//   } else {
+//     showErrors("Veuillez renseigner une date de naissance valide", 'errors_birthdate_date', "birthdate");
+//     console.log("Not good");
+//     return false;
+//   }
+// }
+
 //DOM Element Nombre de concours
 const quantity = document.getElementById("quantity");
 //Function qui vérifie le nombre de concours
