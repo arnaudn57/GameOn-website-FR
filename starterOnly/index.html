@@ -18,7 +18,6 @@
     </div>
     <div class="main-navbar">
 
-      <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
@@ -188,7 +187,6 @@
 
               <div
                 class="formData">
-                <span id="errors_cgu" class="error"></span>
                 <input
                   class="checkbox-input"
                   type="checkbox"
@@ -198,6 +196,8 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <br>
+                <span id="errors_cgu" class="error"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
@@ -217,18 +217,11 @@
       </div>
 
       <!-- MODAL DE CONFIRMATION D'INSCRIPTION -->
-      <!-- <section id="confirm-modal">
-        <span class="close-merci"></span>
-        <div class="confirm-modal-text">
-          <p>Merci pour votre inscription</p>
-          <button id="confirm-modal-close" class="btn-submit">Fermer</button>
-        </div>
-      </section> -->
         <section id="confirm-modal" class="content">
         <span class="close-merci"></span>
         <div class="confirm-modal-text">
           <div>
-            <p>Merci pour votre inscription</p>
+            <p class="confirm-modal-text-p">Merci pour votre inscription</p>
           </div>
           <div>
             <button id="confirm-modal-close" class="btn-submit">Fermer</button>

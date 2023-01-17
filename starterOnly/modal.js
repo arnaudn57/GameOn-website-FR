@@ -169,7 +169,7 @@ formulaire.addEventListener("submit", function(event){
   }
 });
 
-
+//Function qui vérifie tous les champs
 function validate_input(){
   if (validate_prenom() && validate_nom() && validate_email() && validate_nombre_concours() && validate_localisation() && validate_cgu()){
     return true;
