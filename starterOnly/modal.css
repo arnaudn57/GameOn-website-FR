@@ -148,7 +148,7 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(26, 39, 156, 0.4);
 }
 
 .bg-popup {
@@ -160,7 +160,7 @@ main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(26, 39, 156, 0.4);
 }
 
 .container-popup {
