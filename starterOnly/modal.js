@@ -154,12 +154,12 @@ const cgu = document.getElementById("checkbox1");
 
 // Vérifie si le champ "CGU" est coché
 // Si oui, continue le traitement
-// Si non, affiche un message d'erreur
 function validate_cgu(){
   //Vérifie si les CGU sont cochées
   if(cgu.checked){
     hideErrors('errors_cgu');
     return true;
+  // Si non, affiche un message d'erreur
   } else {
     // alert("Veuillez accepter les CGU");
     showErrors('Vous devez vérifier que vous acceptez les termes et conditions.', 'errors_cgu');
