@@ -589,6 +589,10 @@ footer {
 }
 
 @media screen and (max-width: 800px) {
+
+  .content {
+    border-radius: 0px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -615,7 +619,8 @@ footer {
   }
   .hero-text {
     width: unset;
-    font-size: 1rem;
+    font-size: 13px;
+    margin-top: 13px;
   }
   .hero-img img {
     border-radius: 10px;
